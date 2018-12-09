@@ -12,10 +12,10 @@
     <header role="banner"><h1>National Park Search</h1></header>
     <main role="main">
         <section role="region">
-            <p class="instructions">Search by state to display a list of national parks in the area.</p>
+            <p>Search by state to display a list of national parks in the area.</p><p class="instructions">Separate abbreviations with a comma when listing more than one (for example: "AZ, NC, NY").</p>
             <form id="js-form">
-                <label><!--Comma separated list of state abbreviations: -->State Abbreviation: <input id="js-codes" type="input" required></label>
-                <!-- TODO <label>Maximum results to return: <input id="js-num" type="input" value="10" required></label> -->
+                <label>State Abbreviation(s): <input id="js-codes" type="input" required></label>
+                <label>Maximum results to return: <input id="js-num" type="input" value="10" required></label>
                 <button id="js-submit" type="submit" class="form-button">Search</button>
             </form>
         </section>

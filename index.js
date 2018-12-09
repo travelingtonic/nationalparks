@@ -11,28 +11,38 @@ function formatQueryParams(params) {
 }
 
 
-function getParks(codes) {
+function getParks(codes,limitNum) {
     const codeList = removeSpaces(codes);
     const params = {
         api_key: apiKey,
         stateCode: codeList,
+        limit: limitNum,
+        start: 0
     };
   const queryString = formatQueryParams(params)
   const url = searchURL + '?' + queryString;
 
   fetch(url)
   .then(response => response.status >= 400 ? Promise.reject(error) : response.json())
-  .then(responseJson => responseJson.data.length >= 1 ? displayResults(responseJson,codeList) : Promise.reject('no results found'))
-  .catch(error => {
-        emptyResults();
-        $('.js-results').addClass('hidden');
-        $('.js-error-message').append(`Sorry, ${error}. Please try again.<br><br>`);
-        }
-    );
+  .then(responseJson => getResultCount(responseJson) >= 1 ? displayResults(responseJson,codeList) : Promise.reject('no results found'))
+  .catch(error => displayError(error));
 }
 
 function removeSpaces(val) {
     return val.split(' ').join('');
+ }
+
+ function limitResults(val) {
+  if(val >= 1 && val <= 50) {
+    return val;
+  }
+  else {
+    return null;
+  }
+ }
+
+ function getResultCount(responseJson) {
+  return responseJson.data.length;
  }
 
 function emptyResults() {
@@ -42,13 +52,20 @@ function emptyResults() {
     $('.js-resultList').empty();
 }
 
+function displayError(error) {
+    emptyResults();
+    $('.js-results').addClass('hidden');
+    $('.js-error-message').append(`Sorry, ${error}. Please try again.<br><br>`);
+  }
+
 function displayResults(responseJson,codes) {
     emptyResults();
 
-    $('.js-resultcount').text(`Total Results: ${responseJson.total}`);
+    const totalResults = getResultCount(responseJson);
+    $('.js-resultcount').text(`Total Results: ${totalResults}`);
     $('.js-states').text(`Searched for: ${codes}`);
 
-    for (let i = 0; i < responseJson.data.length ; i++){
+    for (let i = 0; i < getResultCount(responseJson) ; i++){
       $('.js-resultList').append(
         `<li class="park-name">${responseJson.data[i].fullName}
             <li class="park-website">Website: ${responseJson.data[i].url}</li>
@@ -62,8 +79,9 @@ function watchForm() {
   $('#js-form').submit(event => {
     event.preventDefault();
     const codes = $('#js-codes').val();
-    //TODO const maxResults = $('#js-num').val();
-    getParks(codes);
+    const limit = $('#js-num').val();
+
+    limitResults(limit) === null ? displayError('max results must be a number 1 - 50') : getParks(codes,limit);
   });
 }
 
