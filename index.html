@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>National Park Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header role="banner">National Park Search</header>
+    <main role="main">
+        <section role="region" class="instructions">Search by state to display a list of national parks in the area.</section>
+        <section role="region">
+            <form id="js-form">
+                    <label>Comma separated list of state abbreviations: <input id="codes" type="input" required></label>
+                <label>Maximum results to return: <input id="num" type="input" value="10" required></label>
+                <button id="submit" type="submit" class="form-button">Search</button>
+            </form>
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
