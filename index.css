@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    width: 100%;
+}
+
+li {
+    list-style-type: none;
+}
+
+p {
+    margin: 0;
+}
+
+.error {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.headerRow {
+    background-color: lightgray;
+    border-bottom: darkgray 2px solid;
+}
+
+.hidden {
+    display: none;
+}
+
+.park-name {
+    font-size: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+    text-indent: -1em;
+}
+
+.park-website {
+    margin-bottom: 1em;
+}
+
+.results {
+    margin-top: 3em;
+}

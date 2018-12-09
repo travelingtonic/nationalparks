@@ -9,16 +9,26 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header role="banner">National Park Search</header>
+    <header role="banner"><h1>National Park Search</h1></header>
     <main role="main">
-        <section role="region" class="instructions">Search by state to display a list of national parks in the area.</section>
         <section role="region">
+            <p class="instructions">Search by state to display a list of national parks in the area.</p>
             <form id="js-form">
-                    <label>Comma separated list of state abbreviations: <input id="codes" type="input" required></label>
-                <label>Maximum results to return: <input id="num" type="input" value="10" required></label>
-                <button id="submit" type="submit" class="form-button">Search</button>
+                <label><!--Comma separated list of state abbreviations: -->State Abbreviation: <input id="js-codes" type="input" required></label>
+                <!-- TODO <label>Maximum results to return: <input id="js-num" type="input" value="10" required></label> -->
+                <button id="js-submit" type="submit" class="form-button">Search</button>
             </form>
         </section>
+        <section role="region">
+                <p class="js-error-message error"></p>
+            </section>
+            <section role="region" class="js-results results hidden">
+                <hr>
+                <h2>Results</h2>
+                    <p class="js-states"></p>
+                    <p class="js-resultcount"></p>
+                    <ul class="js-resultList"></ul>
+            </section>
     </main>
     <script src="index.js"></script>
 </body>
