@@ -68,7 +68,7 @@ function displayResults(responseJson,codes) {
     for (let i = 0; i < getResultCount(responseJson) ; i++){
       $('.js-resultList').append(
         `<li class="park-name">${responseJson.data[i].fullName}
-            <li class="park-website">Website: ${responseJson.data[i].url}</li>
+            <li class="park-website">Website: <a href="${responseJson.data[i].url}" target="_blank">${responseJson.data[i].url}</a></li>
             <li>${responseJson.data[i].description}</li>
         </li>`
       )};
